@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 
-AUTHOR = u'Jake Vanderplas'
+AUTHOR = u'Eriza Fazli'
 
-SITENAME = u'Pythonic Perambulations'
-SITESUBTITLE = u'Musings and ramblings through the world of Python'
+SITENAME = u'Curious Minds'
+SITESUBTITLE = u'random musings and sometimes a few codes'
 SITEURL = '' # change in publishconf.py
 
 # Times and dates
 DEFAULT_DATE_FORMAT = '%b %d, %Y'
-TIMEZONE = 'US/Pacific'
+TIMEZONE = 'Europe/Berlin'
 DEFAULT_LANG = u'en'
 
 # Set the article URL
@@ -18,11 +18,11 @@ ARTICLE_SAVE_AS = 'blog/{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
 
 # Title menu options
 MENUITEMS = [('Archives', '/archives.html'),
-             ('Home Page', 'http://www.astro.washington.edu/users/vanderplas')]
+        ('GitHub', 'https://github.com/herrfz')]
 NEWEST_FIRST_ARCHIVES = False
 
 #Github include settings
-GITHUB_USER = 'jakevdp'
+GITHUB_USER = 'herrfz'
 GITHUB_REPO_COUNT = 3
 GITHUB_SKIP_FORK = True
 GITHUB_SHOW_USER_LINK = True
@@ -49,11 +49,11 @@ NOTEBOOK_DIR = 'downloads/notebooks'
 # Theme and plugins
 #  Theme requires http://github.com/duilio/pelican-octopress-theme/
 #  Plugins require http://github.com/getpelican/pelican-plugins/
-THEME = '/home/vanderplas/Opensource/pelican-octopress-theme/'
-PLUGIN_PATH = '/home/vanderplas/Opensource/pelican-plugins'
+THEME = '/Volumes/MACDISK2/gitrepos/pelican-octopress-theme/'
+PLUGIN_PATH = '/Volumes/MACDISK2/gitrepos/pelican-plugins'
 PLUGINS = ['summary', 'liquid_tags.img', 'liquid_tags.video',
-           'liquid_tags.include_code', 'liquid_tags.notebook',
-           'liquid_tags.literal']
+           'liquid_tags.include_code', 'liquid_tags.literal']
+#           'liquid_tags.notebook',
 
 
 # The theme file should be updated so that the base header contains the line:
@@ -66,8 +66,8 @@ PLUGINS = ['summary', 'liquid_tags.img', 'liquid_tags.video',
 EXTRA_HEADER = open('_nb_header_mod.html').read().decode('utf-8')
 
 # Sharing
-TWITTER_USER = 'jakevdp'
-GOOGLE_PLUS_USER = 'jakevdp'
+TWITTER_USER = 'herrfz'
+GOOGLE_PLUS_USER = 'erizzaaaaa'
 GOOGLE_PLUS_ONE = True
 GOOGLE_PLUS_HIDDEN = False
 FACEBOOK_LIKE = False
@@ -76,7 +76,7 @@ TWITTER_LATEST_TWEETS = True
 TWITTER_FOLLOW_BUTTON = True
 TWITTER_TWEET_COUNT = 3
 TWITTER_SHOW_REPLIES = 'false'
-TWITTER_SHOW_FOLLOWER_COUNT = 'true'
+TWITTER_SHOW_FOLLOWER_COUNT = 'false'
 
 
 # RSS/Atom feeds

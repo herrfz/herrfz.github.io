@@ -1,8 +1,7 @@
-Pythonic Perambulations
------------------------
-This is a port of my blog to the [Pelican](http://blog.getpelican.com/)
-blogging platform.  Experimental for now, but I hope to move everything
-over soon.
+Le blog
+-------
+This is my blog, based on the [Pelican](http://blog.getpelican.com/)
+blogging platform, which I forked from [Jake](https://github.com/jakevdp/PythonicPerambulations).  
 
 Requirements
 ------------
