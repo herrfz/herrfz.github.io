@@ -14,3 +14,12 @@ make github                                             # update the master bran
 # when modifying theme
 cd <to where config.rb is located>
 compass compile
+
+
+# read Jake's writeup here: http://jakevdp.github.io/blog/2013/05/07/migrating-from-octopress-to-pelican/
+
+# Liquid tags added by Jake
+{% img /url/to/image.png [width] [height] [title] [alt]%}
+{% video /url/to/video.mp4 [width] [height] [title] %}
+{% include_code filename [title] %}
+{% notebook filename.ipynb [cells[start:end]] %}        # requires IPython 1.0+
