@@ -52,7 +52,8 @@ NOTEBOOK_DIR = 'downloads/notebooks'
 THEME = '/Volumes/MACDISK2/gitrepos/pelican-octopress-theme/'
 PLUGIN_PATH = '/Volumes/MACDISK2/gitrepos/pelican-plugins'
 PLUGINS = ['summary', 'liquid_tags.img', 'liquid_tags.video',
-           'liquid_tags.include_code', 'liquid_tags.literal']
+           'liquid_tags.include_code', 'liquid_tags.literal',
+           'ipythonnb']
 #           'liquid_tags.notebook',
 
 
@@ -72,7 +73,7 @@ GOOGLE_PLUS_ONE = True
 GOOGLE_PLUS_HIDDEN = False
 FACEBOOK_LIKE = False
 TWITTER_TWEET_BUTTON = True
-TWITTER_LATEST_TWEETS = True
+TWITTER_LATEST_TWEETS = False
 TWITTER_FOLLOW_BUTTON = True
 TWITTER_TWEET_COUNT = 3
 TWITTER_SHOW_REPLIES = 'false'
@@ -86,3 +87,7 @@ FEED_ATOM = 'atom.xml'
 
 # Search
 SEARCH_BOX = True
+
+
+# Markup
+MARKUP = ('md', 'ipynb')
