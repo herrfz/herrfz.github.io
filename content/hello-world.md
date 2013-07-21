@@ -5,4 +5,4 @@ slug: hello-world
 
 First post!
 
-{% include_code hello_world.py [lang:python] [Hello] %}
+{% include_code hello_world.py lang:python Hello World %}
