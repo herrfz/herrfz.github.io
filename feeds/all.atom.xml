@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Curious Minds</title><link href="http://herrfz.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>http://herrfz.github.io/</id><updated>2013-07-20T23:00:00+02:00</updated><entry><title>Hello World</title><link href="http://herrfz.github.io/blog/2013/07/20/hello-world/" rel="alternate"></link><updated>2013-07-20T23:00:00+02:00</updated><author><name>Eriza Fazli</name></author><id>tag:herrfz.github.io,2013-07-20:blog/2013/07/20/hello-world/</id><summary type="html">&lt;p&gt;First post!&lt;/p&gt;
 &lt;figure class='code'&gt;
-&lt;figcaption&gt;&lt;span&gt;[lang:python] [Hello] hello_world.py&lt;/span&gt; &lt;a href='/downloads/code/hello_world.py'&gt;download&lt;/a&gt;&lt;/figcaption&gt;
+&lt;figcaption&gt;&lt;span&gt;Hello World hello_world.py&lt;/span&gt; &lt;a href='/downloads/code/hello_world.py'&gt;download&lt;/a&gt;&lt;/figcaption&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;
-&lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;
-&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&amp;quot;&lt;span class="n"&gt;hello_world&lt;/span&gt;&amp;quot;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hello_world&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
