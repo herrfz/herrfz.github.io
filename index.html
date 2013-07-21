@@ -1264,7 +1264,17 @@ init_mathjax();
           <p class="meta"><time datetime="2013-07-20T23:00:00" pubdate>Jul 20, 2013</time></p>
 </header>
 
-  <div class="entry-content"><p>First post!</p></div>
+  <div class="entry-content"><p>First post!</p>
+<figure class='code'>
+<figcaption><span>[lang:python] [Hello] hello_world.py</span> <a href='/downloads/code/hello_world.py'>download</a></figcaption>
+
+<div class="highlight"><pre><span class="n">import</span> <span class="n">sys</span>
+<span class="n">import</span> <span class="n">os</span>
+<span class="n">print</span><span class="p">(</span>&quot;<span class="n">hello_world</span>&quot;<span class="p">)</span>
+</pre></div>
+
+
+</figure></div>
   <footer>
     <a rel="full-article" href="http://herrfz.github.io/blog/2013/07/20/hello-world/">Read On &crarr;</a>
   </footer>
@@ -1351,7 +1361,15 @@ init_mathjax();
   Copyright &copy; 2013 - Eriza Fazli -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
-    <script type="text/javascript">
+  	<script type="text/javascript">
+	  	  var disqus_shortname = 'curiousminds';
+	  (function() {
+	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	   })();
+	</script>
+  <script type="text/javascript">
     (function(){
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
