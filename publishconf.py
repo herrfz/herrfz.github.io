@@ -16,4 +16,4 @@ DELETE_OUTPUT_DIRECTORY = True
 #RELATIVE_URLS = False
 
 #GOOGLE_ANALYTICS = 'UA-34061646-1'
-#DISQUS_SITENAME = 'pythonicperambulations'
+DISQUS_SITENAME = 'curiousminds'
