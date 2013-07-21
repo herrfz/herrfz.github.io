@@ -1250,7 +1250,6 @@ init_mathjax();
 <ul class="main-navigation">
   <li><a href="http://herrfz.github.io/">Blog</a></li>
       <li><a href="/archives.html">Archives</a></li>
-      <li><a href="https://github.com/herrfz">GitHub</a></li>
             <!-- TODO: add categories here? -->
   </ul></nav>
   <div id="main">
@@ -1263,7 +1262,7 @@ init_mathjax();
 </header>
 
   <div class="entry-content"><div class="ipynb"><div class="text_cell_render border-box-sizing rendered_html">
-<p>I'm starting to put all my works on data analysis and machine learning on this blog. As a first real post, I thought a canonical example of machine learning task should do all right. It is actually also featured as 'machine learning 101' <a href="http://www.kaggle.com/c/digit-recognizer">competition on Kaggle</a>.</p>
+<p>I'm starting to put all my works on data analysis and machine learning on this blog. As a first real post, I thought a canonical example of machine learning task should do all right. It is actually also featured as "machine learning 101" <a href="http://www.kaggle.com/c/digit-recognizer">competition on Kaggle</a>.</p>
 <p>I first made my submission some time ago using the code <a href="http://nbviewer.ipython.org/urls/raw.github.com/herrfz/kaggle/master/hwdigit/handwritten_digit_recognition.ipynb">here</a>. In the meantime, I think I've learnt scikit-learn a little bit more, and this post serves as an update.</p>
 <p>The main change I implemented here is that now I included the number of PCA components in the list of parameters to be optimised. This can be achieved by using scikit-learn's <code>Pipeline</code>. </p>
 <p>Another change is related to the way the dataset is partitioned to speed up the computation. We know that SVM complexity increases quadratically with sample size. With the number of hyperparameters to optimise and the cross-validation iterations to compute the algorithm performance on one parameter set, learning simply takes forever. In my previous attempt I simply partitioned the dataset into three, and trained an SVM on each partition. Each SVM is then applied to the test set, and the final prediction is obtained by majority vote.</p>
@@ -2550,7 +2549,9 @@ kIAEJCCBoRD4f2JtG3lGvQPhAAAAAElFTkSuQmCC
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The Kaggle-computed classification accuracy is 0.97014. It is not actually an improvement compared to my first submission. But looking at the classification performance of the individual classifiers, it does seem to perform somewhat better. </p>
 </div>
-</div></div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>PS: This post is a proper IPython notebook, and thus can be downloaded from <a href="https://raw.github.com/herrfz/herrfz.github.io/source/content/digits.ipynb">here</a> to be executed locally. Of course the data need to be [downloaded] from Kaggle and saved in a "data" subdirectory.</p>
+</div></div></div>
     <footer>
       <p class="meta">
   <span class="byline author vcard">
