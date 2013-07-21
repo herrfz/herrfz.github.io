@@ -26,3 +26,14 @@ Requirements
   - https://github.com/duilio/pelican-octopress-theme/pull/11: social media
   - https://github.com/duilio/pelican-octopress-theme/pull/12: disqus specification
   - https://github.com/duilio/pelican-octopress-theme/pull/13: extra header args
+  
+  
+Customizations
+---------------
+
+- Clone pelican-plugins and pelican-octopress-theme from Jvdp 
+- Cherry-picked customizations:
+	- [Minimalist colours](Minimalist colours)
+	- [Blogging with IPython notebook](http://danielfrg.github.io/blog/2013/03/08/pelican-ipython-notebook-plugin/). Note: things may change in the future as `nbconvert` becomes part of IPython
+	- [Syntax highlighting](http://www.wongdev.com/blog/2013/01/19/spicing-up-octopress/) for code snippets.
+	- [Fonts, line spacing, etc.](http://melandri.net/2012/02/14/octopress-theme-customization/)
