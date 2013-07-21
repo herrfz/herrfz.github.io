@@ -1288,5 +1288,6 @@ kIAEJCCBoRD4f2JtG3lGvQPhAAAAAElFTkSuQmCC
 &lt;p&gt;The Kaggle-computed classification accuracy is 0.97014. It is not actually an improvement compared to my first submission. But looking at the classification performance of the individual classifiers, it does seem to perform somewhat better. &lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;PS: This post is a proper IPython notebook, and thus can be downloaded from &lt;a href="https://raw.github.com/herrfz/herrfz.github.io/source/content/digits.ipynb"&gt;here&lt;/a&gt; to be executed locally. Of course the data need to be [downloaded] from Kaggle and saved in a "data" subdirectory.&lt;/p&gt;
-&lt;/div&gt;&lt;/div&gt;</summary><category term="machine learning"></category><category term="SVM"></category><category term="bagging"></category></entry></feed>
+&lt;p&gt;PS: This post is a proper IPython notebook, and thus can be downloaded from &lt;a href="https://raw.github.com/herrfz/herrfz.github.io/source/content/digits.ipynb"&gt;here&lt;/a&gt; to be executed locally. Of course the data need to be &lt;a href="http://www.kaggle.com/c/digit-recognizer/data"&gt;downloaded&lt;/a&gt; from Kaggle and saved in a "data" subdirectory.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</summary><category term="machine learning"></category><category term="SVM"></category><category term="bagging"></category></entry></feed>
