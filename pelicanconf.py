@@ -67,7 +67,7 @@ EXTRA_HEADER = open('_nb_header_mod.html').read().decode('utf-8')
 
 # Sharing
 TWITTER_USER = 'herrfz'
-GOOGLE_PLUS_USER = 'erizzaaaaa'
+GOOGLE_PLUS_USER = '110082095063475330828'
 GOOGLE_PLUS_ONE = True
 GOOGLE_PLUS_HIDDEN = False
 FACEBOOK_LIKE = False
