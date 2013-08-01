@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Curious Minds</title><link href="http://herrfz.github.io/" rel="alternate"></link><link href="/atom.xml" rel="self"></link><id>http://herrfz.github.io/</id><updated>2013-07-21T00:00:00+02:00</updated><entry><title>Handwritten digit recognition</title><link href="http://herrfz.github.io/blog/2013/07/21/handwritten-digit-recognition/" rel="alternate"></link><updated>2013-07-21T00:00:00+02:00</updated><author><name>Eriza Fazli</name></author><id>tag:herrfz.github.io,2013-07-21:blog/2013/07/21/handwritten-digit-recognition/</id><summary type="html">&lt;div class="ipynb"&gt;&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Curious Minds</title><link href="http://herrfz.github.io/" rel="alternate"></link><link href="/atom.xml" rel="self"></link><id>http://herrfz.github.io/</id><updated>2013-07-25T22:13:00+02:00</updated><entry><title>Building High Performance Computing Server in Under One Hour</title><link href="http://herrfz.github.io/blog/2013/07/25/building-high-performance-computing-server-in-under-one-hour/" rel="alternate"></link><updated>2013-07-25T22:13:00+02:00</updated><author><name>Eriza Fazli</name></author><id>tag:herrfz.github.io,2013-07-25:blog/2013/07/25/building-high-performance-computing-server-in-under-one-hour/</id><summary type="html">&lt;p&gt;I finally bit the bullet and got myself an 8-core 4 GHz AMD FX-8350 gamer machine with 16 GB RAM (upgradeable up to 32 GB, which I plan to do so, someday), as I'm getting more and more serious with machine learning. I've stucked in scikit-learn out-of-memory error a couple of times, and using Amazon EC2 cluster is not always the most efficient way to go (plus the additional stress of having to look constantly at the hour…). &lt;/p&gt;
+&lt;p&gt;For doing embarassingly parallel computation stuff, such as training a Random Forest, or computing cross-validation scores for different samples/subsets of a dataset, having a lot of CPUs is clearly an advantage. scikit-learn makes it really easy to parallelize these kinds of computation (most of the time it's just a matter of setting the parameter &lt;code&gt;n_jobs=-1&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;So the plan is to build on this 8-core machine a computing server to which I can SSH and build my machine learning models using IPython notebook. I'll share here  the steps to quickly build such a system.&lt;/p&gt;
+&lt;h4&gt;Install Ubuntu server (ca. 30 min)&lt;/h4&gt;
+&lt;p&gt;Because graphical desktops are gimmicks.&lt;/p&gt;
+&lt;h4&gt;Download and install Anaconda Python distribution (ca. 10 min)&lt;/h4&gt;
+&lt;p&gt;From &lt;a href="http://www.continuum.io/downloads"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;Configure notebook server (ca. 10 min)&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Create a hashed password&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class='code'&gt;
+&lt;figcaption&gt;&lt;span&gt;ipython_password&lt;/span&gt; &lt;a href='/downloads/code/ipython_password'&gt;download&lt;/a&gt;&lt;/figcaption&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;In&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;IPython.lib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;passwd&lt;/span&gt;
+&lt;span class="n"&gt;In&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;passwd&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;Enter&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;Verify&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;Out&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;sha1:67c9e60bb8b6:9ffede0825894254b2e042ea597d771089e11aed&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;Create an SSL certificate&lt;/strong&gt;, from the command line &lt;code&gt;$ openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Create IPython notebook profile&lt;/strong&gt;, from the command line &lt;code&gt;$ ipython profile create nbserver&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Edit the profile's configuration file&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class='code'&gt;
+&lt;figcaption&gt;&lt;span&gt;ipython_config&lt;/span&gt; &lt;a href='/downloads/code/ipython_config'&gt;download&lt;/a&gt;&lt;/figcaption&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_config&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="c"&gt;# Kernel config&lt;/span&gt;
+&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;IPKernelApp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pylab&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;inline&amp;#39;&lt;/span&gt;  &lt;span class="c"&gt;# if you want plotting support always&lt;/span&gt;
+
+&lt;span class="c"&gt;# Notebook config&lt;/span&gt;
+&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NotebookApp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;certfile&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;u&amp;#39;/absolute/path/to/your/certificate/mycert.pem&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NotebookApp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;*&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NotebookApp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open_browser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NotebookApp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;password&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;u&amp;#39;sha1:bcd259ccf...[your hashed password here]&amp;#39;&lt;/span&gt;
+&lt;span class="c"&gt;# It is a good idea to put it on a known, fixed port&lt;/span&gt;
+&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NotebookApp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;8888&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;And that's it! Now I can SSH to the machine, cd to the folder where I'll do my analyses, and start IPython notebook server: &lt;code&gt;$ ipython notebook --profile=nbserver&lt;/code&gt;. Then fire up the notebook from a remote web browser. The URL to use is &lt;code&gt;https://[server's IP address]:[port number]&lt;/code&gt;. Note the https. &lt;/p&gt;
+&lt;p&gt;Using IPython makes it even easy to add more &lt;em&gt;computers&lt;/em&gt; in the network to form a cluster using IPython.parallel. But that would be a topic for another post.&lt;/p&gt;</summary><category term="IPython"></category><category term="scikit-learn"></category><category term="machine learning"></category></entry><entry><title>Handwritten digit recognition</title><link href="http://herrfz.github.io/blog/2013/07/21/handwritten-digit-recognition/" rel="alternate"></link><updated>2013-07-21T00:00:00+02:00</updated><author><name>Eriza Fazli</name></author><id>tag:herrfz.github.io,2013-07-21:blog/2013/07/21/handwritten-digit-recognition/</id><summary type="html">&lt;div class="ipynb"&gt;&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;I'm starting to put all my works on data analysis and machine learning on this blog. As a first real post, I thought a canonical example of machine learning task should do all right. It is actually also featured as "machine learning 101" &lt;a href="http://www.kaggle.com/c/digit-recognizer"&gt;competition on Kaggle&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I first made my submission some time ago using the code &lt;a href="http://nbviewer.ipython.org/urls/raw.github.com/herrfz/kaggle/master/hwdigit/handwritten_digit_recognition.ipynb"&gt;here&lt;/a&gt;. In the meanwhile, I think I've learnt scikit-learn a little bit more, and this post serves as an update.&lt;/p&gt;
 &lt;p&gt;The main change I implemented here is that now I included the number of PCA components in the list of parameters to be optimised. This can be achieved by using scikit-learn's &lt;code&gt;Pipeline&lt;/code&gt;. &lt;/p&gt;

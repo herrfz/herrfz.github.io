@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Curious Minds</title>
+  <title>Building High Performance Computing Server in Under One Hour</title>
   <meta name="author" content="Eriza Fazli">
 
     <link href="/atom.xml" type="application/atom+xml" rel="alternate"
@@ -1254,11 +1254,81 @@ init_mathjax();
   </ul></nav>
   <div id="main">
     <div id="content">
-      <ul>
-    <li><a href="http://herrfz.github.io/category/ipython.html">IPython</a></li>
-    <li><a href="http://herrfz.github.io/category/kaggle.html">kaggle</a></li>
-    <li><a href="http://herrfz.github.io/category/misc.html">misc</a></li>
-</ul>
+      <div>
+  <article class="hentry" role="article">
+    <header>
+          <h1 class="entry-title">Building High Performance Computing Server in Under One Hour</h1>
+          <p class="meta"><time datetime="2013-07-25T22:13:00" pubdate>Jul 25, 2013</time></p>
+</header>
+
+  <div class="entry-content"><p>I finally bit the bullet and got myself an 8-core 4 GHz AMD FX-8350 gamer machine with 16 GB RAM (upgradeable up to 32 GB, which I plan to do so, someday), as I'm getting more and more serious with machine learning. I've stucked in scikit-learn out-of-memory error a couple of times, and using Amazon EC2 cluster is not always the most efficient way to go (plus the additional stress of having to look constantly at the hour…). </p>
+<p>For doing embarassingly parallel computation stuff, such as training a Random Forest, or computing cross-validation scores for different samples/subsets of a dataset, having a lot of CPUs is clearly an advantage. scikit-learn makes it really easy to parallelize these kinds of computation (most of the time it's just a matter of setting the parameter <code>n_jobs=-1</code>).</p>
+<p>So the plan is to build on this 8-core machine a computing server to which I can SSH and build my machine learning models using IPython notebook. I'll share here  the steps to quickly build such a system.</p>
+<h4>Install Ubuntu server (ca. 30 min)</h4>
+<p>Because graphical desktops are gimmicks.</p>
+<h4>Download and install Anaconda Python distribution (ca. 10 min)</h4>
+<p>From <a href="http://www.continuum.io/downloads">here</a>.</p>
+<h4>Configure notebook server (ca. 10 min)</h4>
+<p><strong>Create a hashed password</strong></p>
+<figure class='code'>
+<figcaption><span>ipython_password</span> <a href='/downloads/code/ipython_password'>download</a></figcaption>
+
+<div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">IPython.lib</span> <span class="kn">import</span> <span class="n">passwd</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">passwd</span><span class="p">()</span>
+<span class="n">Enter</span> <span class="n">password</span><span class="p">:</span>
+<span class="n">Verify</span> <span class="n">password</span><span class="p">:</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="s">&#39;sha1:67c9e60bb8b6:9ffede0825894254b2e042ea597d771089e11aed&#39;</span>
+</pre></div>
+
+
+</figure>
+
+<p><strong>Create an SSL certificate</strong>, from the command line <code>$ openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem</code></p>
+<p><strong>Create IPython notebook profile</strong>, from the command line <code>$ ipython profile create nbserver</code></p>
+<p><strong>Edit the profile's configuration file</strong></p>
+<figure class='code'>
+<figcaption><span>ipython_config</span> <a href='/downloads/code/ipython_config'>download</a></figcaption>
+
+<div class="highlight"><pre><span class="n">c</span> <span class="o">=</span> <span class="n">get_config</span><span class="p">()</span>
+
+<span class="c"># Kernel config</span>
+<span class="n">c</span><span class="o">.</span><span class="n">IPKernelApp</span><span class="o">.</span><span class="n">pylab</span> <span class="o">=</span> <span class="s">&#39;inline&#39;</span>  <span class="c"># if you want plotting support always</span>
+
+<span class="c"># Notebook config</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">certfile</span> <span class="o">=</span> <span class="s">u&#39;/absolute/path/to/your/certificate/mycert.pem&#39;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">ip</span> <span class="o">=</span> <span class="s">&#39;*&#39;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">open_browser</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="s">u&#39;sha1:bcd259ccf...[your hashed password here]&#39;</span>
+<span class="c"># It is a good idea to put it on a known, fixed port</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="mi">8888</span>
+</pre></div>
+
+
+</figure>
+
+<p>And that's it! Now I can SSH to the machine, cd to the folder where I'll do my analyses, and start IPython notebook server: <code>$ ipython notebook --profile=nbserver</code>. Then fire up the notebook from a remote web browser. The URL to use is <code>https://[server's IP address]:[port number]</code>. Note the https. </p>
+<p>Using IPython makes it even easy to add more <em>computers</em> in the network to form a cluster using IPython.parallel. But that would be a topic for another post.</p></div>
+    <footer>
+      <p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Eriza Fazli</span>
+  </span>
+  <time datetime="2013-07-25T22:13:00" pubdate>Jul 25, 2013</time>    <span class="categories">
+        <a class="category" href="http://herrfz.github.io/tag/ipython.html">IPython</a>
+        <a class="category" href="http://herrfz.github.io/tag/scikit-learn.html">scikit-learn</a>
+        <a class="category" href="http://herrfz.github.io/tag/machine-learning.html">machine learning</a>
+      </span>
+  </p>      <div class="sharing">
+    <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://herrfz.github.io/blog/2013/07/25/building-high-performance-computing-server-in-under-one-hour/" data-via="herrfz" data-counturl="http://herrfz.github.io/blog/2013/07/25/building-high-performance-computing-server-in-under-one-hour/" >Tweet</a>
+      <div class="g-plusone" data-size="medium"></div>
+    </div>    </footer>
+  </article>
+
+    <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+  </section>
+  </div>
       <aside class="sidebar">
   <section>
     <h1>Recent Posts</h1>
@@ -1346,6 +1416,9 @@ init_mathjax();
 	    } catch(err) {}
 	</script>
 	<script type="text/javascript">
+	            var disqus_identifier = 'http://herrfz.github.io/blog/2013/07/25/building-high-performance-computing-server-in-under-one-hour/';
+          var disqus_url = 'http://herrfz.github.io/blog/2013/07/25/building-high-performance-computing-server-in-under-one-hour/';
+	  var disqus_title = 'Building High Performance Computing Server in Under One Hour';
 	  	  var disqus_shortname = 'curiousminds';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
