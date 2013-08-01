@@ -1261,7 +1261,7 @@ init_mathjax();
           <p class="meta"><time datetime="2013-07-25T22:13:00" pubdate>Jul 25, 2013</time></p>
 </header>
 
-  <div class="entry-content"><p>I finally bit the bullet and got myself an 8-core 4 GHz AMD FX-8350 gamer machine with 16 GB RAM (upgradeable up to 32 GB, which I plan to do so, someday), as I'm getting more and more serious with machine learning. I've stucked in scikit-learn out-of-memory error a couple of times, and using Amazon EC2 cluster is not always the most efficient way to go (plus the additional stress of having to look constantly at the hour…). </p>
+  <div class="entry-content"><p>I finally bit the bullet and got myself an 8-core 4 GHz AMD FX-8350 gamer machine with 16 GB RAM (upgradeable up to 32 GB, which I plan to do so, someday), as I'm getting more and more serious with machine learning. <!-- PELICAN_END_SUMMARY --> I've stucked in scikit-learn out-of-memory error a couple of times, and using Amazon EC2 cluster is not always the most efficient way to go (plus the additional stress of having to look constantly at the hour…). </p>
 <p>For doing embarassingly parallel computation stuff, such as training a Random Forest, or computing cross-validation scores for different samples/subsets of a dataset, having a lot of CPUs is clearly an advantage. scikit-learn makes it really easy to parallelize these kinds of computation (most of the time it's just a matter of setting the parameter <code>n_jobs=-1</code>).</p>
 <p>So the plan is to build on this 8-core machine a computing server to which I can SSH and build my machine learning models using IPython notebook. I'll share here  the steps to quickly build such a system.</p>
 <h4>Install Ubuntu server (ca. 30 min)</h4>
