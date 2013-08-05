@@ -1,6 +1,6 @@
 git checkout source                                     # switches to source branch
 make post                                               # command to setup new post
-==write,edit==
+==write,edit==                                          # to use the summary plugin, don't include "summary:" metadata tag in the post
 make devserver                                          # start a local webserver at localhost:8000
 ==observe,iterate==
 ./develop_server.sh stop                                # stop the webserver
