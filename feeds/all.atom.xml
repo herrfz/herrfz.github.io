@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Curious Minds</title><link href="http://herrfz.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>http://herrfz.github.io/</id><updated>2013-08-06T00:00:00+02:00</updated><entry><title>R sucks</title><link href="http://herrfz.github.io/blog/2013/08/06/rpy2-ggplot2/" rel="alternate"></link><updated>2013-08-06T00:00:00+02:00</updated><author><name>Eriza Fazli</name></author><id>tag:herrfz.github.io,2013-08-06:blog/2013/08/06/rpy2-ggplot2/</id><summary type="html">&lt;div class="ipynb"&gt;&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;OK, not really. Particularly when it comes to graphics, &lt;a href="http://ggplot2.org/"&gt;ggplot2&lt;/a&gt; is damn beautiful.&lt;/p&gt;
-&lt;p&gt;The following demo shows just how powerful it is. I'll let the picture speaks for itself.&lt;/p&gt;
+&lt;p&gt;OK, not really. Particularly when it comes to graphics, &lt;a href="http://ggplot2.org/"&gt;ggplot2&lt;/a&gt; is damn beautiful. The following demo shows just how powerful it is. I'll let the picture speaks for itself. &lt;/p&gt;
 &lt;p&gt;For the sake of understanding, here's the data that we'll use:&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
